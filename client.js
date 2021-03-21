@@ -63,7 +63,7 @@ function connectionListener() {
             console.clear()
             console.log(`---------*Cardápio*---------`)
             for (let i = 0; i < foods.length; i++) {
-                console.log(`1${foods[i].index} - ${foods[i].name}`);
+                console.log(`1${foods[i].index} - ${foods[i].value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
             }
             console.log(`\n`)
             comando = readlineSync.question('Escolha um item do cardapio, ou digite 0 para voltar para os comandos: ')
@@ -74,11 +74,11 @@ function connectionListener() {
             console.log(`---------*Carrinho*---------`)
             if (pedidos.length !== 0) {
 
-                console.log('Você ja comprou')
+                console.log('Você já comprou')
                 pedidos = pedidos.filter(item => !!item.name)
 
                 for (let i = 0; i < pedidos.length; i++) {
-                    console.log(`${i} - ${pedidos[i].name}`);
+                    console.log(`${i} - ${pedidos[i].name}  ${pedidos[i].value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`);
                 }
                 console.log(`\n`)
 
@@ -123,7 +123,7 @@ function connectionListener() {
         if ((comando >= 11) && (comando <= foods.length + 10)) {
             console.clear()
 
-            console.log(`Otimo Pedido, um(a) ${foods[comando - 11].name}`)
+            console.log(`Otimo Pedido, um(a) ${foods[comando - 11].name} de ${foods[comando - 11].value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`)
             pedidos.push(foods[comando - 11])
             console.log("\n");
             comando = readlineSync.question('Digite 0 para listar os comandos, ou 1 para comprar de novo: ')
